@@ -11,6 +11,8 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -28,12 +30,26 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        EditText editText1 = findViewById(R.id.EditText1);
+        EditText editText2 = findViewById(R.id.EditText2);
+
         findViewById(R.id.Button).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-
+                String phone = editText1.getText().toString();
+                String content = editText2.getText().toString();
+                if (phone.length() == 0)
+                {
+                    return;
+                }
+                if (content.length() == 0)
+                {
+                    return;
+                }
+                sendSMS(phone, content);
             }
         });
     }
